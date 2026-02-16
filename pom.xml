@@ -18,6 +18,7 @@
         <io.rest-assured.version>6.0.0</io.rest-assured.version>
         <json.version>20251224</json.version>
         <scribejava-apis.version>8.3.3</scribejava-apis.version>
+        <testng.version>7.11.0</testng.version>
     </properties>
 
     <dependencies>
@@ -53,6 +54,25 @@
             <version>${scribejava-apis.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- Source: https://mvnrepository.com/artifact/org.testng/testng -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Source: https://mvnrepository.com/artifact/org.hamcrest/hamcrest -->
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest</artifactId>
+            <version>3.0</version>
+            <scope>test</scope>
+        </dependency>
+
+
+
 
     </dependencies>
     <build>
