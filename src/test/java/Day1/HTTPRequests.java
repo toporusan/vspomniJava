@@ -18,7 +18,7 @@ public class HTTPRequests {
                 .statusCode(200)
                 .log().all();
 
-        System.out.println("sad-----sd");
+        System.out.println("seeee--sd");
 
     }
 }
