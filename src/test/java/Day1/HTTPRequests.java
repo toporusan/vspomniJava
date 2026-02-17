@@ -57,9 +57,10 @@ public class HTTPRequests {
                 .jsonPath().getInt("bookingid");
 
         System.out.println("booking id is " + id);
+        System.out.println();
     }
 
-    @Test (priority = 2)
+    @Test (priority = 2, dependsOnMethods = {"createBooking"})
     void updateBooking(){
 
         HashMap<String,Object> bookingdates = new HashMap<>();
@@ -79,8 +80,9 @@ public class HTTPRequests {
                 .accept("application/json")
                 .body(map)
                 .when()
-                .post("https://restful-booker.herokuapp.com/booking" + id)
+                .put("https://restful-booker.herokuapp.com/booking" + id)
                 .then()
+                .statusCode(200)
                 .log().all();
     }
 
