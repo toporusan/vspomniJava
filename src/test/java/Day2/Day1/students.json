@@ -1,0 +1,45 @@
+{
+  "students": [
+    {
+      "id": "1",
+      "name": "John",
+      "location": "India",
+      "phone": "1234567890",
+      "courses": [
+        "Java",
+        "Selenium"
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Kim",
+      "location": "US",
+      "phone": "98876543213",
+      "courses": [
+        "Python",
+        "Cypress"
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Ivan",
+      "location": "Ukraine",
+      "phone": "5551112233",
+      "courses": [
+        "API Testing",
+        "Postman",
+        "SQL"
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Maria",
+      "location": "Germany",
+      "phone": "4442221199",
+      "courses": [
+        "Playwright",
+        "JavaScript"
+      ]
+    }
+  ]
+}
