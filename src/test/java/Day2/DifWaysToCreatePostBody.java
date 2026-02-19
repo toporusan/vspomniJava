@@ -7,7 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
+import java.sql.Array;
 import java.util.HashMap;
+import java.util.List;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
@@ -122,7 +124,6 @@ public class DifWaysToCreatePostBody {
     }
 
 
-
     // 2) Сохранение данных с org.json library
 
     //Создание объекта
@@ -130,13 +131,37 @@ public class DifWaysToCreatePostBody {
     public void testPostUsingJson() {
 
         JSONObject data = new JSONObject();
-
-        HashMap data1 = new HashMap();
-        data.put("name", "Vasif");
+        data.put("name", "Muxrifddin");
         data.put("location", "Uzbekistan");
         data.put("phone", 555111233);
-        String[] courses = {"API Testing", "Postman", "SQL"};
+        String[] courses = {"Android", "Postman"};
         data.put("courses", courses);
+
+
+        given()
+                .contentType(ContentType.JSON)
+                .body(data.toString())
+                .when()
+                .post("http://localhost:3000/students")
+                .then()
+                .statusCode(201)
+                .body("name", equalTo("Muxrifddin"))
+                .body("location", equalTo("Uzbekistan"))
+                .body("phone", equalTo(555111233))
+                .body("courses", hasItems(courses))
+                .log().body();
+
+
+    }
+
+    // 3) Сохранение данных с POJO class
+
+    //Создание объекта
+    @Test(priority = 1)
+    public void testPostUsingPOJO() {
+
+        POPJOclass data = new POPJOclass("Petya", "Uzbekistan",21321321, List.of("Android", "Postman"));
+
 
         given()
                 .contentType(ContentType.JSON)
@@ -145,13 +170,14 @@ public class DifWaysToCreatePostBody {
                 .post("http://localhost:3000/students")
                 .then()
                 .statusCode(201)
-                .body("name", equalTo("Vasif"))
+                .body("name", equalTo("Petya"))
                 .body("location", equalTo("Uzbekistan"))
-                .body("phone", equalTo(555111233))
-                .body("courses", hasItems(courses))
+                .body("phone", equalTo(21321321))
+                .body("courses", hasItems("Android", "Postman"))
                 .log().body();
 
 
     }
+
 
 }

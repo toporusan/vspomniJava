@@ -21,14 +21,34 @@
       ]
     },
     {
+      "id": "cb6d",
+      "name": "Petya",
+      "location": "Uzbekistan",
+      "phone": 21321321,
       "courses": [
         "Android",
         "Postman"
-      ],
-      "phone": 55500233,
-      "name": "Muxrifddin",
+      ]
+    },
+    {
+      "id": "1ede",
+      "name": "Petya",
       "location": "Uzbekistan",
-      "id": "3"
+      "phone": 21321321,
+      "courses": [
+        "Android",
+        "Postman"
+      ]
+    },
+    {
+      "id": "b989",
+      "name": "Petya",
+      "location": "Uzbekistan",
+      "phone": 21321321,
+      "courses": [
+        "Android",
+        "Postman"
+      ]
     }
   ]
 }
