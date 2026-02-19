@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
 <suite name="All Test Suite">
-    <test verbose="2" preserve-order="true" name="/Users/Toporusan/My_files/0.Projects/vspomniJava">
+    <test name="API Tests" preserve-order="true" verbose="2">
         <classes>
-            <class name="Day1.HTTPRequests">
+
+<!--            <class name="Day1.HTTPRequests">
                 <methods>
-                    <include name="spacexdata"/>
+                    <include name="updateBooking"/>
+                    <include name="createBooking"/>
+                </methods>
+            </class>-->
+
+            <class name="Day2.DifWaysToCreatePostBody">
+                <methods>
+                    <include name="testGetUsingHashMap"/>
+                    <include name="testPostUsingHashMap"/>
+                    <include name="testPutUsingHashMap"/>
+                    <include name="testDeleteUsingHashMap"/>
                 </methods>
             </class>
+
         </classes>
+
     </test>
+
 </suite>

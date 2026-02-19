@@ -21,25 +21,14 @@
       ]
     },
     {
-      "id": "3",
-      "name": "Ivan",
-      "location": "Ukraine",
-      "phone": "5551112233",
       "courses": [
-        "API Testing",
-        "Postman",
-        "SQL"
-      ]
-    },
-    {
-      "id": "4",
-      "name": "Maria",
-      "location": "Germany",
-      "phone": "4442221199",
-      "courses": [
-        "Playwright",
-        "JavaScript"
-      ]
+        "Android",
+        "Postman"
+      ],
+      "phone": 55500233,
+      "name": "Muxrifddin",
+      "location": "Uzbekistan",
+      "id": "3"
     }
   ]
 }
