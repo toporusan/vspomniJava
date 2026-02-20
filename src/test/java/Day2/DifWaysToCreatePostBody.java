@@ -1,21 +1,27 @@
 package Day2;
 
+import com.github.javafaker.Faker;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.json.JSONTokener;
 import org.testng.annotations.Test;
-
-import java.sql.Array;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
+
+
 public class DifWaysToCreatePostBody {
-    private static final Logger log = LoggerFactory.getLogger(DifWaysToCreatePostBody.class);
+
+    Faker faker = new Faker();
+
 
     // 1) Сохранение данных с HashMap
 
@@ -40,11 +46,11 @@ public class DifWaysToCreatePostBody {
     @Test(priority = 1)
     public void testPostUsingHashMap() {
 
-        HashMap data = new HashMap();
+        Map<String, Object> data = new HashMap<>();
         data.put("name", "Vasif");
         data.put("location", "Uzbekistan");
-        data.put("phone", 555111233);
-        String[] courses = {"API Testing", "Postman", "SQL"};
+        data.put("phone", "555111233");
+        List<String> courses = List.of("API Testing", "Postman", "SQL");
         data.put("courses", courses);
 
         given()
@@ -56,7 +62,7 @@ public class DifWaysToCreatePostBody {
                 .statusCode(201)
                 .body("name", equalTo("Vasif"))
                 .body("location", equalTo("Uzbekistan"))
-                .body("phone", equalTo(555111233))
+                .body("phone", equalTo("555111233"))
                 .body("courses", hasItems(courses))
                 .log().body();
 
@@ -77,11 +83,11 @@ public class DifWaysToCreatePostBody {
         String id = response.jsonPath().getString("[-1].id");
         System.out.println(id);
 
-        HashMap data = new HashMap();
+        Map<String, Object> data = new HashMap<>();
         data.put("name", "Muxrifddin");
         data.put("location", "Uzbekistan");
-        data.put("phone", 55500233);
-        String[] courses = {"Android", "Postman"};
+        data.put("phone", "55500233");
+        List<String> courses = List.of("Android", "Postman");
         data.put("courses", courses);
 
 
@@ -133,7 +139,7 @@ public class DifWaysToCreatePostBody {
         JSONObject data = new JSONObject();
         data.put("name", "Muxrifddin");
         data.put("location", "Uzbekistan");
-        data.put("phone", 555111233);
+        data.put("phone", "555111233");
         String[] courses = {"Android", "Postman"};
         data.put("courses", courses);
 
@@ -147,7 +153,7 @@ public class DifWaysToCreatePostBody {
                 .statusCode(201)
                 .body("name", equalTo("Muxrifddin"))
                 .body("location", equalTo("Uzbekistan"))
-                .body("phone", equalTo(555111233))
+                .body("phone", equalTo("555111233"))
                 .body("courses", hasItems(courses))
                 .log().body();
 
@@ -159,8 +165,11 @@ public class DifWaysToCreatePostBody {
     //Создание объекта
     @Test(priority = 1)
     public void testPostUsingPOJO() {
+        String name = faker.name().firstName();
+        String phone = faker.phoneNumber().phoneNumber();
+        String location = faker.country().name();
 
-        POPJOclass data = new POPJOclass("Petya", "Uzbekistan",21321321, List.of("Android", "Postman"));
+        POPJOclass data = new POPJOclass(name, location, phone, List.of("Android", "Postman"));
 
 
         given()
@@ -170,13 +179,36 @@ public class DifWaysToCreatePostBody {
                 .post("http://localhost:3000/students")
                 .then()
                 .statusCode(201)
-                .body("name", equalTo("Petya"))
-                .body("location", equalTo("Uzbekistan"))
-                .body("phone", equalTo(21321321))
-                .body("courses", hasItems("Android", "Postman"))
                 .log().body();
+    }
 
 
+    // 4) Сохранение данных с JSON file
+
+    //Создание объекта
+    @Test(priority = 1)
+    public void testPostUsingJsonFile() {
+
+        File f = new java.io.File("src/test/java/Day2/body.json");
+        FileReader fr = null;
+        try {
+            fr = new FileReader(f);
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+
+        JSONTokener jt = new JSONTokener(fr);
+        JSONObject data = new JSONObject(jt);
+
+
+        given()
+                .contentType(ContentType.JSON)
+                .body(data)
+                .when()
+                .post("http://localhost:3000/students")
+                .then()
+                .statusCode(201)
+                .log().body();
     }
 
 

@@ -21,34 +21,9 @@
       ]
     },
     {
-      "id": "cb6d",
-      "name": "Petya",
-      "location": "Uzbekistan",
-      "phone": 21321321,
-      "courses": [
-        "Android",
-        "Postman"
-      ]
-    },
-    {
-      "id": "1ede",
-      "name": "Petya",
-      "location": "Uzbekistan",
-      "phone": 21321321,
-      "courses": [
-        "Android",
-        "Postman"
-      ]
-    },
-    {
-      "id": "b989",
-      "name": "Petya",
-      "location": "Uzbekistan",
-      "phone": 21321321,
-      "courses": [
-        "Android",
-        "Postman"
-      ]
+      "id": "ef27",
+      "empty": false,
+      "mapType": "java.util.HashMap"
     }
   ]
 }
