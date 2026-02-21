@@ -19,6 +19,16 @@
         "Python",
         "Cypress"
       ]
+    },
+    {
+      "id": "1",
+      "courses": [
+        "Java",
+        "Selenium"
+      ],
+      "phone": "1234567890",
+      "name": "Panjabi MC",
+      "location": "India"
     }
   ]
 }
