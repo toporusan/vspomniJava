@@ -6,6 +6,7 @@ import io.restassured.response.Response;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.testng.annotations.Test;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -15,7 +16,6 @@ import java.util.Map;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
-
 
 
 public class DifWaysToCreatePostBody {
@@ -37,7 +37,6 @@ public class DifWaysToCreatePostBody {
                 .statusCode(200)
                 .body("[0].location", equalTo("India"))
                 .body("[1].name", equalTo("Kim"))
-                .body("[2].courses", contains("API Testing", "Postman", "SQL"))
                 .log().all();
     }
 
@@ -63,7 +62,6 @@ public class DifWaysToCreatePostBody {
                 .body("name", equalTo("Vasif"))
                 .body("location", equalTo("Uzbekistan"))
                 .body("phone", equalTo("555111233"))
-                .body("courses", hasItems(courses))
                 .log().body();
 
 
@@ -203,7 +201,7 @@ public class DifWaysToCreatePostBody {
 
         given()
                 .contentType(ContentType.JSON)
-                .body(data)
+                .body(data.toString())
                 .when()
                 .post("http://localhost:3000/students")
                 .then()

@@ -19,11 +19,6 @@
         "Python",
         "Cypress"
       ]
-    },
-    {
-      "id": "ef27",
-      "empty": false,
-      "mapType": "java.util.HashMap"
     }
   ]
 }
