@@ -1,6 +1,7 @@
 package Day3;
 
 import io.restassured.http.ContentType;
+import io.restassured.http.Header;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
@@ -18,6 +19,19 @@ public class HeadersDemo {
                 .then()
                 .header("Content-Encoding", "gzip")
                 .header("Transfer-Encoding", "chunked");
+
+
+    }
+
+    @Test(priority = 2)
+    public void getHeaders() {
+
+        Response res = given()
+                .when()
+                .get("https://www.google.com");
+        res.getHeaders().forEach(System.out::println);
+
+
 
 
     }
