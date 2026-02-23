@@ -1,0 +1,25 @@
+package Day3;
+
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import org.testng.annotations.Test;
+
+
+import static io.restassured.RestAssured.*;
+
+public class HeadersDemo {
+
+    @Test(priority = 1)
+    public void testHeaders() {
+
+        given()
+                .when()
+                .get("https://www.google.com")
+                .then()
+                .header("Content-Encoding", "gzip")
+                .header("Transfer-Encoding", "chunked");
+
+
+    }
+}
+
