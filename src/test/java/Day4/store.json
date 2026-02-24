@@ -1,0 +1,66 @@
+{
+  "store": {
+    "book": [
+      {
+        "author": "Nigel Rees",
+        "category": "reference",
+        "price": 150.50,
+        "title": "Sayings of the Century"
+      },
+      {
+        "author": "Evelyn Waugh",
+        "category": "fiction",
+        "price": 100.00,
+        "title": "Sword of Honour"
+      },
+      {
+        "author": "Herman Melville",
+        "category": "fiction",
+        "price": 120.75,
+        "title": "Moby Dick"
+      },
+      {
+        "author": "J. R. R. Tolkien",
+        "category": "fantasy",
+        "price": 200.00,
+        "title": "The Lord of the Rings"
+      },
+      {
+        "author": "George Orwell",
+        "category": "dystopian",
+        "price": 90.99,
+        "title": "1984"
+      },
+      {
+        "author": "Jane Austen",
+        "category": "romance",
+        "price": 85.50,
+        "title": "Pride and Prejudice"
+      },
+      {
+        "author": "Fyodor Dostoevsky",
+        "category": "classic",
+        "price": 110.00,
+        "title": "Crime and Punishment"
+      },
+      {
+        "author": "Harper Lee",
+        "category": "fiction",
+        "price": 95.25,
+        "title": "To Kill a Mockingbird"
+      },
+      {
+        "author": "Dan Brown",
+        "category": "thriller",
+        "price": 130.40,
+        "title": "The Da Vinci Code"
+      },
+      {
+        "author": "Stephen King",
+        "category": "horror",
+        "price": 140.60,
+        "title": "The Shining"
+      }
+    ]
+  }
+}
