@@ -1,14 +1,14 @@
 {
   "students": [
     {
-      "id": "1",
-      "name": "John",
-      "location": "India",
-      "phone": "1234567890",
       "courses": [
-        "Java",
-        "Selenium"
-      ]
+        "Android",
+        "Postman"
+      ],
+      "phone": "55500233",
+      "name": "Muxrifddin",
+      "location": "Uzbekistan",
+      "id": "1"
     },
     {
       "id": "2",
