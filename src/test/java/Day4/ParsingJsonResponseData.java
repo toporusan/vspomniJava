@@ -5,7 +5,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,9 +29,11 @@ public class ParsingJsonResponseData {
     @Test(priority = 2)
     public void testJsonResponse2() {
         Response res = given()
+                .baseUri("http://localhost")
+                .port(3000)
                 .contentType("application/json")
                 .when()
-                .get("http://localhost:3000/store");
+                .get("/store");
 
         Assert.assertEquals(res.statusCode(), 200); //  валидация статус кода
         System.out.println("statusCode: " + res.statusCode());
@@ -49,6 +50,7 @@ public class ParsingJsonResponseData {
             JSONObject bookObj = (JSONObject) book;
             titles.add(bookObj.getString("title"));
         });
+
 
         System.out.println(titles);
 
