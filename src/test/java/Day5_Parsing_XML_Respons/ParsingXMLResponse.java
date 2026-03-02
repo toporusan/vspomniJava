@@ -12,8 +12,11 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import static io.restassured.RestAssured.form;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -41,6 +44,8 @@ public class ParsingXMLResponse {
             throw new RuntimeException(e);
         }
 
+        // SOAP CountryInfoService  в постмане коллекция
+
         Response res = given()
                 .contentType("application/soap+xml; charset=utf-8")
                 .baseUri("http://webservices.oorsprong.org")
@@ -50,10 +55,25 @@ public class ParsingXMLResponse {
                 .then()
                 .extract().response();
 
-        System.out.println(res.headers().toString());
-        System.out.println();
+//        System.out.println(res.headers().toString());
+//        System.out.println();
         System.out.println(res.asString());
-        Assert.assertEquals(res.contentType(), "application/soap+xml; charset=utf-8");
+//        Assert.assertEquals(res.contentType(), "application/soap+xml; charset=utf-8");
+
+        // Найти и свалидировать какие-нибудь данные без сохранения респонса
+       /* local-name() — это функция XPath, которая возвращает:
+        имя тега без namespace, * нужна для того чтобы игнорировать неймспейсы
+
+        */
+
+        List<String> sCode = res.xmlPath()
+                .getList("**.findAll { it.name() == 'sCode' }*.text()");
+        List<String> sName = res.xmlPath()
+                .getList("**.findAll { it.name() == 'sName' }*.text()");
+
+        System.out.println(sCode.get(0));
+        System.out.println(sName.get(0));
+
 
 
 

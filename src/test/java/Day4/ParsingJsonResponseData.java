@@ -46,6 +46,7 @@ public class ParsingJsonResponseData {
         JSONArray books = jo.getJSONArray("book");
 
         List<String> titles = new ArrayList<>();
+
         books.forEach(book -> {
             JSONObject bookObj = (JSONObject) book;
             titles.add(bookObj.getString("title"));
