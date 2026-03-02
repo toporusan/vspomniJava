@@ -61,10 +61,8 @@ public class ParsingXMLResponse {
 //        Assert.assertEquals(res.contentType(), "application/soap+xml; charset=utf-8");
 
         // Найти и свалидировать какие-нибудь данные без сохранения респонса
-       /* local-name() — это функция XPath, которая возвращает:
-        имя тега без namespace, * нужна для того чтобы игнорировать неймспейсы
-
-        */
+        /* local-name() — это функция XPath, которая возвращает:
+        имя тега без namespace, нужна, для того чтобы игнорировать неймспейсы */
 
         List<String> sCode = res.xmlPath()
                 .getList("**.findAll { it.name() == 'sCode' }*.text()");
