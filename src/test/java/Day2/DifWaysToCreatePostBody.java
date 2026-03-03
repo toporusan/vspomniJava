@@ -167,7 +167,7 @@ public class DifWaysToCreatePostBody {
         String phone = faker.phoneNumber().phoneNumber();
         String location = faker.country().name();
 
-        POPJOclass data = new POPJOclass(name, location, phone, List.of("Android", "Postman"));
+        POJOclass data = new POJOclass(name, location, phone, List.of("Android", "Postman"));
 
 
         given()

@@ -5,21 +5,44 @@
     <test name="API Tests" preserve-order="true" verbose="2">
         <classes>
 
-<!--            <class name="Day1.HTTPRequests">
+            <class name="Day3.CoociesDemo">
                 <methods>
-                    <include name="updateBooking"/>
-                    <include name="createBooking"/>
-                </methods>
-            </class>-->
-
-            <class name="Day2.DifWaysToCreatePostBody">
-                <methods>
-                    <include name="testGetUsingHashMap"/>
-                    <include name="testPostUsingHashMap"/>
-                    <include name="testPutUsingHashMap"/>
-                    <include name="testDeleteUsingHashMap"/>
+                    <include name="coocieDemo"/>
+                    <include name="GetCoocieInfo"/>
                 </methods>
             </class>
+
+            <class name="Day3.HeadersDemo">
+            <methods>
+                <include name="testHeaders"/>
+                <include name="getHeaders"/>
+            </methods>
+            </class>
+
+            <class name="Day3.TestQueryAndPathParameters">
+                <methods>
+                    <include name="testQueryAndPathParameters"/>
+                </methods>
+            </class>
+
+            <class name="Day5_Parsing_XML_Respons.FileUploadAndDownload">
+                <methods>
+                    <include name="singleFileUpload"/>
+                    <include name="multiFileUpload"/>
+                    <include name="downloadFile"/>
+                </methods>
+            </class>
+
+            <class name="Day5_Parsing_XML_Respons.ParsingXMLResponse">
+                <methods>
+                    <include name="testXMLResponse"/>
+                    <include name="multiFileUpload"/>
+                    <include name="downloadFile"/>
+                </methods>
+            </class>
+
+
+
 
         </classes>
 

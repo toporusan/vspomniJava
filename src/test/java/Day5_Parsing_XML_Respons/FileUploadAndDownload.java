@@ -55,7 +55,6 @@ public class FileUploadAndDownload {
                 .get("/image/png")
                 .then()
                 .log().all();
-
     }
 
 
