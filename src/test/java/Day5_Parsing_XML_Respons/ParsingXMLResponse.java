@@ -69,12 +69,9 @@ public class ParsingXMLResponse {
         List<String> sName = res.xmlPath()
                 .getList("**.findAll { it.name() == 'sName' }*.text()");
 
-        System.out.println(sCode.get(0));
-        System.out.println(sName.get(0));
 
-
-
-
+        System.out.println(sCode);
+        System.out.println(sName);
 
     }
 }
