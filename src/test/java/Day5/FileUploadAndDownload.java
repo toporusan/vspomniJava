@@ -1,7 +1,6 @@
-package Day5_Parsing_XML_Respons;
+package Day5;
 
 
-import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
 
 import java.io.File;

@@ -1,24 +1,15 @@
-package Day5_Parsing_XML_Respons;
+package Day5;
 
-import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.security.Principal;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static io.restassured.RestAssured.form;
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
 
 
 public class ParsingXMLResponse {

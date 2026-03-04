@@ -25,7 +25,7 @@
                 </methods>
             </class>
 
-            <class name="Day5_Parsing_XML_Respons.FileUploadAndDownload">
+            <class name="Day5.FileUploadAndDownload">
                 <methods>
                     <include name="singleFileUpload"/>
                     <include name="multiFileUpload"/>
@@ -33,7 +33,7 @@
                 </methods>
             </class>
 
-            <class name="Day5_Parsing_XML_Respons.ParsingXMLResponse">
+            <class name="Day5.ParsingXMLResponse">
                 <methods>
                     <include name="testXMLResponse"/>
                     <include name="multiFileUpload"/>
