@@ -1,7 +1,11 @@
 package Day6;
 
+import io.restassured.config.RestAssuredConfig;
+import io.restassured.matcher.RestAssuredMatchers;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import org.testng.annotations.Test;
+
+import java.io.File;
 
 import static io.restassured.RestAssured.given;
 
@@ -27,6 +31,10 @@ public class XMLSchemaValidation {
                 .post("/websamples.countryinfo/CountryInfoService.wso")
                 .then()
                 .assertThat().statusCode(200)
-                .body(JsonSchemaValidator.matchesJsonSchema("country.xsd"));
+                //.log().body();
+                .body("Envelope.Body.ListOfContinentsByNameResponse",
+                        matchesXsdInClasspath("continents.xsd"));
+
+        // .body(RestAssuredMatchers.matchesXsd( new File("src/test/java/Day6/country.xsd")));
     }
 }
