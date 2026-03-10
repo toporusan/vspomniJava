@@ -3,14 +3,11 @@
 <suite name="Failed suite [All Test Suite]" guice-stage="DEVELOPMENT" verbose="0">
   <test thread-count="5" name="API Tests(failed)" verbose="0">
     <classes>
-      <class name="Day2.DifWaysToCreatePostBody">
+      <class name="Day3.CoociesDemo">
         <methods>
-          <include name="testGetUsingHashMap"/>
-          <include name="testPostUsingHashMap"/>
-          <include name="testPutUsingHashMap"/>
-          <include name="testDeleteUsingHashMap"/>
+          <include name="coocieDemo"/>
         </methods>
-      </class> <!-- Day2.DifWaysToCreatePostBody -->
+      </class> <!-- Day3.CoociesDemo -->
     </classes>
   </test> <!-- API Tests(failed) -->
 </suite> <!-- Failed suite [All Test Suite] -->

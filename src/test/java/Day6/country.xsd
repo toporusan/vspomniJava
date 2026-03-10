@@ -1,0 +1,22 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.oorsprong.org/websamples.countryinfo" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="ListOfLanguagesByCodeResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ListOfLanguagesByCodeResult">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="tLanguage" maxOccurs="unbounded" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:string" name="sISOCode"/>
+                                        <xs:element type="xs:string" name="sName"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

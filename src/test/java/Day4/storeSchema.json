@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "title": "store",
+  "description": "Auto generated JSON schema based on the 'store' file",
+  "properties": {
+    "store": {
+      "type": "object",
+      "properties": {
+        "book": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "author": {
+                "type": "string"
+              },
+              "price": {
+                "type": "number"
+              },
+              "category": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
