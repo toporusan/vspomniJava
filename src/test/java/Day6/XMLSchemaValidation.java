@@ -36,5 +36,6 @@ public class XMLSchemaValidation {
                         matchesXsdInClasspath("continents.xsd"));
 
         // .body(RestAssuredMatchers.matchesXsd( new File("src/test/java/Day6/country.xsd")));
+        // .body(RestAssuredMatchers.matchesXsd( new File("src/test/java/Day6/country.xsd")));
     }
 }
