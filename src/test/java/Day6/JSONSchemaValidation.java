@@ -2,9 +2,7 @@ package Day6;
 
 import io.restassured.module.jsv.JsonSchemaValidator;
 import org.testng.annotations.Test;
-
 import java.io.File;
-
 import static io.restassured.RestAssured.given;
 
 public class JSONSchemaValidation {
@@ -42,7 +40,7 @@ public class JSONSchemaValidation {
                 .get("/user/ivan_petrov")
                 .then()
                 .assertThat().statusCode(200)
-                .body(JsonSchemaValidator.matchesJsonSchema(new File("src/test/java/Day6/usersSchema.json")))
+                .body(JsonSchemaValidator.matchesJsonSchema(new File("src/test/java/Day6/resourse/usersSchema.json")))
                 .log().body();
 
     }
