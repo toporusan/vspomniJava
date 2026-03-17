@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://www.oorsprong.org/websamples.countryinfo"
+           targetNamespace="http://www.oorsprong.org/websamples.countryinfo"
+           elementFormDefault="qualified">
+
+    <!-- Элемент-ответ на запрос ListOfContinentsByName -->
+    <xs:element name="ListOfContinentsByNameResponse">
+        <xs:complexType>
+            <xs:sequence>
+
+                <!-- Список континентов -->
+                <xs:element name="ListOfContinentsByNameResult">
+                    <xs:complexType>
+                        <xs:sequence>
+
+                            <!-- Один континент, может быть несколько -->
+                            <xs:element name="tContinent" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="sCode" type="xs:string"/>
+                                        <xs:element name="sName" type="xs:string"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

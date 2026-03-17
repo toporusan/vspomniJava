@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+           xmlns:cnt="http://www.oorsprong.org/websamples.countryinfo"
+           targetNamespace="http://schemas.xmlsoap.org/soap/envelope/"
+           elementFormDefault="qualified">
+
+    <!-- Корневой элемент ответа: soap:Envelope -->
+    <xs:element name="Envelope">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- Внутри Envelope — soap:Body -->
+                <xs:element name="Body">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <!--
+                                xs:any — принимаем элементы из неймспейса countryinfo.
+                                processContents="strict" означает: валидировать строго,
+                                схема для этого неймспейса загружается через SchemaFactory в тесте.
+                            -->
+                            <xs:any namespace="http://www.oorsprong.org/websamples.countryinfo"
+                                    processContents="strict"
+                                    minOccurs="0" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

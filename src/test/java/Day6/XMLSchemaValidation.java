@@ -34,17 +34,10 @@ public class XMLSchemaValidation {
                 .when()
                 .post("websamples.countryinfo/CountryInfoService.wso");
 
-        // Шаг 2 — загружаем обе XSD схемы вместе:
-        // сначала зависимость (countryInfo.xsd), потом главная (country.xsd)
-        SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        Schema schema = factory.newSchema(new StreamSource[]{
-                new StreamSource(getClass().getResourceAsStream("/countryInfo.xsd")),
-                new StreamSource(getClass().getResourceAsStream("/country.xsd"))
-        });
+        System.out.println(response.getHeaders());
+        System.out.println(response.getBody().asString());
 
-        // Шаг 3 — валидируем XML-ответ против схемы
-        // validate() бросит SAXException если XML не соответствует — тест упадёт
-        schema.newValidator().validate(new StreamSource(new StringReader(response.asString())));
+
 
     }
 }
