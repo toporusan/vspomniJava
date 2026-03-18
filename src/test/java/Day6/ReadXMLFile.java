@@ -25,20 +25,25 @@ public class ReadXMLFile {
             Document document = builder.parse("src/test/java/Day6/resourse/CountryInfoService.xml");
 
             Element root = document.getDocumentElement();
-            NodeList nodeList = root.getChildNodes();
+//            NodeList nodeList = root.getChildNodes();
+//            System.out.println(nodeList.toString());
+//
+//            for (int i = 0; i < nodeList.getLength(); i++) {
+//
+//                Node node = nodeList.item(i);
+//                if (node.getNodeType() == Node.ELEMENT_NODE) {
+//                    Element element = (Element) node;
+//                    String name = element.getAttribute("sCode");
+//                    System.out.println(name);
+//                }
+//            }
+            NodeList continents = document.getElementsByTagName("m:tContinent");
 
-            for (int i = 0; i < nodeList.getLength(); i++) {
-
-                Node node = nodeList.item(i);
-                if (node.getNodeType() == Node.ELEMENT_NODE) {
-                    Element element = (Element) node;
-                    String name = element.getAttribute("sCode");
-                    System.out.println(name);
-                }
+            for (int i = 0; i < continents.getLength(); i++) {
+                Element continent = (Element) continents.item(i);
+                String continentName = continent.getTextContent();
+                System.out.println(continentName);
             }
-
-
-
 
 
 
