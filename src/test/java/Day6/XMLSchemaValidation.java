@@ -1,27 +1,21 @@
 package Day6;
 
+import XMLSchemeValidationUtility.XmlSchemaValidator;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 import javax.xml.XMLConstants;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-import javax.xml.transform.stream.StreamSource;
-import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
-import javax.xml.validation.Validator;
-import java.io.File;
-import java.io.StringReader;
-import java.io.StringWriter;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 
+import java.io.File;
+import java.io.IOException;
+
+import static XMLSchemeValidationUtility.XmlSchemaValidator.validatorXmlSchema;
 import static io.restassured.RestAssured.given;
+
+
 
 
 public class XMLSchemaValidation {
@@ -38,7 +32,6 @@ public class XMLSchemaValidation {
                 </soap12:Envelope>
                 """;
 
-        // Шаг 1 — отправляем запрос и получаем ответ
         Response response = given()
                 .baseUri("http://webservices.oorsprong.org")
                 .header("Content-Type", " application/soap+xml; charset=utf-8")
@@ -46,36 +39,32 @@ public class XMLSchemaValidation {
                 .when()
                 .post("websamples.countryinfo/CountryInfoService.wso");
 
-        //System.out.println(response.getBody().asString());
-
-        // Шаг 2 — парсим ответ и извлекаем ListOfContinentsByNameResponse из SOAP-обёртки
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        factory.setNamespaceAware(true); // важно! без этого namespace не распознаётся
-        DocumentBuilder builder = factory.newDocumentBuilder();
-        Document document = builder.parse(new InputSource(new StringReader(response.getBody().asString())));
-
-        // ищем нужный элемент по namespace и имени тега
-        Element responseElement = (Element) document.getElementsByTagNameNS(
+        validatorXmlSchema(
+                response,
+                "src/test/java/Day6/resourse/countryInfo.xsd",
+                XMLConstants.W3C_XML_SCHEMA_NS_URI,
                 "http://www.oorsprong.org/websamples.countryinfo",
                 "ListOfContinentsByNameResponse"
-        ).item(0);
-
-        // конвертируем элемент обратно в строку для валидации
-        Transformer transformer = TransformerFactory.newInstance().newTransformer();
-        StringWriter writer = new StringWriter();
-        transformer.transform(new DOMSource(responseElement), new StreamResult(writer));
-        String innerXml = writer.toString();
-
-        System.out.println("Извлечённый XML: " + innerXml);
-
-        // Шаг 3 — загружаем XSD и валидируем
-        SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        Schema schema = schemaFactory.newSchema(new File("src/test/java/Day6/resourse/countryInfo.xsd"));
-        Validator validator = schema.newValidator();
-        validator.validate(new StreamSource(new StringReader(innerXml)));
-
-        System.out.println("XML валиден согласно XSD схеме!");
+        );
     }
 
+    @Test
+    public void xmlSchemaValidation2() throws ParserConfigurationException, IOException, TransformerException, SAXException {
 
+        Response response = given()
+                .baseUri("https://api.asakabank.uz")
+                .header("Content-Type", "text/xml; charset=UTF-8")
+                .header("device-id", "c840f81b8bd1c268")
+                .header("device-name", "Xiaomi 24117RK2CG")
+                .header("api-key", "6fe47b9745e3d25f238f15c7693a9603")
+                .body(new File("src/test/java/Day6/p2pInfo/request.xml"))
+                .when()
+                .post("SAPI/MAWS")
+                .then()
+                .extract().response();
+
+        XmlSchemaValidator.validatorXmlSchema(response, "src/test/java/Day6/p2pInfo/xmlSchena.xsd",
+                XMLConstants.W3C_XML_SCHEMA_NS_URI, null, "return");
+
+    }
 }

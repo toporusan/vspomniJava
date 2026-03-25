@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap.payment.asaka.my.uz/">
+    <soapenv:Body>
+        <soap:p2pInfo>
+            <p2pInfoRequest>
+                <apiKey>6fe47b9745e3d25f238f15c7693a9603</apiKey>
+                <lang>en</lang>
+                <receiverNumber>2449681</receiverNumber>
+                <receiverNumberType>USER_CARD_ID</receiverNumberType>
+                <senderNumber>2449630</senderNumber>
+                <senderNumberType>USER_CARD_ID</senderNumberType>
+                <token>eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI5MDAxNzA2ODkiLCJhdWRpZW5jZSI6MTIsImNyZWF0ZWQiOjE3NzQzNTUwMzM2ODMsInRva2VuX3R5cGUiOiJBQ0NFU1MiLCJleHAiOjE3NzY5NDcwMzMsInVzZXJpZCI6MTk0MTg0NSwidG9rZW5fZmFtaWx5IjoiZWUyNDhlYzFlYzEzNDhkODgyMjBiNDkwMTcwNjEzYzcifQ.EKYZ3kZh_slpYkmM1BxCc1smRwFQluryZSDngaDC9aA0Bq_chJMfS_fHFeG-ya138Wq_XYqIkLS0YR9EddGimw</token>
+                <version>2.1.19-staging</version>
+            </p2pInfoRequest>
+        </soap:p2pInfo>
+    </soapenv:Body>
+</soapenv:Envelope>

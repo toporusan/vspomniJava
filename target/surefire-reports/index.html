@@ -103,7 +103,7 @@
                     <div class="method-list-content passed suite-Surefire_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Surefire_suite" title="Day6.XMLSchemaValidation" class="method navigator-link" hash-for-method="xmlSchemaValidation">xmlSchemaValidation</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Surefire_suite" title="Day6.XMLSchemaValidation" class="method navigator-link" hash-for-method="xmlSchemaValidation2">xmlSchemaValidation2</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Surefire_suite -->
@@ -126,9 +126,9 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="xmlSchemaValidation">
-                  </a> <!-- xmlSchemaValidation -->
-                  <span class="method-name">xmlSchemaValidation</span>
+                  <a name="xmlSchemaValidation2">
+                  </a> <!-- xmlSchemaValidation2 -->
+                  <span class="method-name">xmlSchemaValidation2</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -143,6 +143,11 @@
 &lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
 &lt;suite name=&quot;Surefire suite&quot; verbose=&quot;0&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Surefire test&quot; verbose=&quot;0&quot;&gt;
+    &lt;method-selectors&gt;
+      &lt;method-selector&gt;
+        &lt;selector-class name=&quot;org.apache.maven.surefire.testng.utils.MethodSelector&quot; priority=&quot;10000&quot;/&gt;
+      &lt;/method-selector&gt;
+    &lt;/method-selectors&gt;
     &lt;classes&gt;
       &lt;class name=&quot;Day6.XMLSchemaValidation&quot;/&gt;
     &lt;/classes&gt;
@@ -186,9 +191,9 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'xmlSchemaValidation')
+data.setCell(0, 1, 'xmlSchemaValidation2')
 data.setCell(0, 2, 'Day6.XMLSchemaValidation')
-data.setCell(0, 3, 1226);
+data.setCell(0, 3, 1193);
 window.suiteTableData['Surefire_suite']= { tableData: data, tableDiv: 'times-div-Surefire_suite'}
 return data;
 }
@@ -208,9 +213,16 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Surefire_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">0 ignored methods</span>
+            <span class="header-content">1 ignored method</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">Day6.XMLSchemaValidation</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">xmlSchemaValidation</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
         <div panel-name="chronological-Surefire_suite" class="panel">
@@ -221,7 +233,7 @@ return data;
             <div class="chronological-class">
               <div class="chronological-class-name">Day6.XMLSchemaValidation</div> <!-- chronological-class-name -->
               <div class="test-method">
-                <span class="method-name">xmlSchemaValidation</span>
+                <span class="method-name">xmlSchemaValidation2</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- test-method -->
           </div> <!-- main-panel-content rounded-window-bottom -->
