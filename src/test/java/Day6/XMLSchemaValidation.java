@@ -64,7 +64,7 @@ public class XMLSchemaValidation {
                 .extract().response();
 
         XmlSchemaValidator.validatorXmlSchema(response, "src/test/java/Day6/p2pInfo/xmlSchena.xsd",
-                XMLConstants.W3C_XML_SCHEMA_NS_URI, null, "return");
+                XMLConstants.W3C_XML_SCHEMA_NS_URI,"return");
 
     }
 }
