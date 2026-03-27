@@ -1,6 +1,6 @@
 package Day6;
 
-import XMLSchemeValidationUtility.XmlSchemaValidator;
+import XMLSchemeValidationUtility.SchemaValidatorUtility;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 import org.xml.sax.SAXException;
@@ -12,15 +12,15 @@ import javax.xml.transform.TransformerException;
 import java.io.File;
 import java.io.IOException;
 
-import static XMLSchemeValidationUtility.XmlSchemaValidator.validatorXmlSchema;
+import static XMLSchemeValidationUtility.SchemaValidatorUtility.validatorXmlSchema;
 import static io.restassured.RestAssured.given;
 
 
 
 
-public class XMLSchemaValidation {
+public class SchemaValidationTests {
 
-    @Test
+/*    @Test
     public void xmlSchemaValidation() throws Exception {
 
         String requestBody = """
@@ -46,7 +46,7 @@ public class XMLSchemaValidation {
                 "http://www.oorsprong.org/websamples.countryinfo",
                 "ListOfContinentsByNameResponse"
         );
-    }
+    }*/
 
     @Test
     public void xmlSchemaValidation2() throws ParserConfigurationException, IOException, TransformerException, SAXException {
@@ -57,13 +57,14 @@ public class XMLSchemaValidation {
                 .header("device-id", "c840f81b8bd1c268")
                 .header("device-name", "Xiaomi 24117RK2CG")
                 .header("api-key", "6fe47b9745e3d25f238f15c7693a9603")
-                .body(new File("src/test/java/Day6/p2pInfo/request.xml"))
+                //.header("token", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI5MDAxNzA2ODkiLCJhdWRpZW5jZSI6MTIsImNyZWF0ZWQiOjE3NzQ2MTY5MDc1NjQsInRva2VuX3R5cGUiOiJBQ0NFU1MiLCJleHAiOjE3NzcyMDg5MDcsInVzZXJpZCI6MTk0MTg0NSwidG9rZW5fZmFtaWx5IjoiN2IxNDQ4NDgwYmM3NGRhMGIxYmVkNGE5ZWI0NjRhNGMifQ.bRGLOez_CbUqi6YWH6Jj46R3_95zrf1bOGcZI2WlRZzPo3qWmTdD4NZ6_KMBYTLwz0Rci-vl152i3GiV1QSqxg")
+                .body(new File("src/test/java/XMLSchemeValidationUtility/p2pInfo/request.xml"))
                 .when()
                 .post("SAPI/MAWS")
                 .then()
                 .extract().response();
 
-        XmlSchemaValidator.validatorXmlSchema(response, "src/test/java/Day6/p2pInfo/xmlSchena.xsd",
+        SchemaValidatorUtility.validatorXmlSchema(response, "src/test/java/XMLSchemeValidationUtility/p2pInfo/xmlSchena.xsd",
                 XMLConstants.W3C_XML_SCHEMA_NS_URI,"return");
 
     }

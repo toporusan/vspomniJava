@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="Day6.XMLSchemaValidation" time="1.437" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="Day6.XMLSchemaValidation" time="2.172" tests="1" errors="0" skipped="0" failures="1">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -13,7 +13,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="UZ"/>
     <property name="sun.boot.library.path" value="/usr/local/Cellar/openjdk/25.0.2/libexec/openjdk.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/vasif_s/Work/0.Projects/vspomniJava/target/surefire/surefirebooter-20260325170341849_3.jar /Users/vasif_s/Work/0.Projects/vspomniJava/target/surefire 2026-03-25T17-03-41_787-jvmRun1 surefire-20260325170341849_1tmp surefire_0-20260325170341849_2tmp"/>
+    <property name="sun.java.command" value="/Users/vasif_s/Work/0.Projects/vspomniJava/target/surefire/surefirebooter-20260326102517263_3.jar /Users/vasif_s/Work/0.Projects/vspomniJava/target/surefire 2026-03-26T10-25-17_187-jvmRun1 surefire-20260326102517263_1tmp surefire_0-20260326102517263_2tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="test" value="XMLSchemaValidation#xmlSchemaValidation2"/>
@@ -31,7 +31,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Users/vasif_s/Work/0.Projects/vspomniJava/target/surefire/surefirebooter-20260325170341849_3.jar"/>
+    <property name="surefire.real.class.path" value="/Users/vasif_s/Work/0.Projects/vspomniJava/target/surefire/surefirebooter-20260326102517263_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="25.0.2"/>
@@ -61,8 +61,66 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="xmlSchemaValidation2" classname="Day6.XMLSchemaValidation" time="1.194">
-    <system-out><![CDATA[<?xml version="1.0" ?><S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/"><S:Body><ns2:p2pInfoResponse xmlns:ns2="http://soap.payment.asaka.my.uz/"><return><result><status>0</status><message>Success</message><serverTime>1774440222250</serverTime></result><sender><cardNumber>986004******2609</cardNumber><cardHolder>VASIF SULTANOV</cardHolder><cardType>Humo</cardType><bankId>4</bankId><bankName>Asakabank</bankName><bankLogoOptions><logo>https://monitoring.asakabank.uz/images/banks/logo/asaka-bank_1602757011105.png</logo><light>https://monitoring.asakabank.uz/images/banks/logo/asaka-bank_1602848101441.png</light><colorStart>215,0,25,1</colorStart><colorEnd>194,0,23,1</colorEnd></bankLogoOptions><accountId>2449630</accountId><accountType>Card</accountType><currency><code>000</code><symbol>UZS</symbol></currency></sender><receiver><cardNumber>986024******0639</cardNumber><cardHolder>VASIF SULTANOV</cardHolder><cardType>Humo</cardType><bankId>39</bankId><bankName>Octo bank</bankName><bankLogoOptions><logo>https://monitoring.asakabank.uz/images/banks/logo/ravnaq-bank_1602757028909.png</logo><light>https://monitoring.asakabank.uz/images/banks/logo/ravnaq-bank_1602848885848.png</light><colorStart>9,114,206,1</colorStart><colorEnd>3,48,164,1</colorEnd></bankLogoOptions><accountId>3335829</accountId><accountType>Card</accountType><currency><code>000</code><symbol>UZS</symbol></currency></receiver><amount><defaultValue>0</defaultValue><editable>true</editable><limitMin>100000</limitMin><limitMax>14999700000</limitMax><onceMaxAmount>5000000000</onceMaxAmount><availableDecimal>true</availableDecimal><currency><code>000</code><symbol>UZS</symbol></currency></amount><uzsAmount><defaultValue>0</defaultValue><editable>true</editable><limitMin>100000</limitMin><limitMax>14999700000</limitMax><onceMaxAmount>5000000000</onceMaxAmount><availableDecimal>true</availableDecimal><currency><code>000</code><symbol>UZS</symbol></currency></uzsAmount><serviceCharge><value>0.40</value><type>PERCENT</type></serviceCharge><serviceChargeDiscount><isDiscountAvailable>false</isDiscountAvailable></serviceChargeDiscount></return></ns2:p2pInfoResponse></S:Body></S:Envelope>
+  <testcase name="xmlSchemaValidation2" classname="Day6.XMLSchemaValidation" time="1.855">
+    <failure message="Ошибка парсинга XML или валидации по XSD" type="java.lang.RuntimeException"><![CDATA[java.lang.RuntimeException: Ошибка парсинга XML или валидации по XSD
+	at XMLSchemeValidationUtility.XmlSchemaValidator.validatorXmlSchema(XmlSchemaValidator.java:164)
+	at Day6.XMLSchemaValidation.xmlSchemaValidation2(XMLSchemaValidation.java:66)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.testng.TestRunner.privateRun(TestRunner.java:741)
+	at org.testng.TestRunner.run(TestRunner.java:616)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:155)
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeSingleClass(TestNGDirectoryTestSuite.java:102)
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:91)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:137)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+Caused by: org.xml.sax.SAXParseException; lineNumber: 1; columnNumber: 63; cvc-complex-type.2.4.a: Invalid content was found starting with element 'status'. One of '{message}' is expected.
+	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:204)
+	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:135)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:396)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:284)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator$XSIErrorReporter.reportError(XMLSchemaValidator.java:512)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.reportSchemaError(XMLSchemaValidator.java:3596)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1972)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:830)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:376)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2736)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:635)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:113)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:551)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:890)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:826)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.StreamValidatorHelper.validate(StreamValidatorHelper.java:177)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.ValidatorImpl.validate(ValidatorImpl.java:115)
+	at java.xml/javax.xml.validation.Validator.validate(Validator.java:124)
+	at XMLSchemeValidationUtility.XmlSchemaValidator.validatorXmlSchema(XmlSchemaValidator.java:155)
+	... 32 more
+]]></failure>
+    <system-out><![CDATA[Извлечённый XML: <?xml version="1.0" encoding="UTF-8"?><return><result><status>0</status><message>Success</message><serverTime>1774502719743</serverTime></result><sender><cardNumber>986004******2609</cardNumber><cardHolder>VASIF SULTANOV</cardHolder><cardType>Humo</cardType><bankId>4</bankId><bankName>Asakabank</bankName><bankLogoOptions><logo>https://monitoring.asakabank.uz/images/banks/logo/asaka-bank_1602757011105.png</logo><light>https://monitoring.asakabank.uz/images/banks/logo/asaka-bank_1602848101441.png</light><colorStart>215,0,25,1</colorStart><colorEnd>194,0,23,1</colorEnd></bankLogoOptions><accountId>2449630</accountId><accountType>Card</accountType><currency><code>000</code><symbol>UZS</symbol></currency></sender><receiver><cardNumber>986024******0639</cardNumber><cardHolder>VASIF SULTANOV</cardHolder><cardType>Humo</cardType><bankId>39</bankId><bankName>Octo bank</bankName><bankLogoOptions><logo>https://monitoring.asakabank.uz/images/banks/logo/ravnaq-bank_1602757028909.png</logo><light>https://monitoring.asakabank.uz/images/banks/logo/ravnaq-bank_1602848885848.png</light><colorStart>9,114,206,1</colorStart><colorEnd>3,48,164,1</colorEnd></bankLogoOptions><accountId>3335829</accountId><accountType>Card</accountType><currency><code>000</code><symbol>UZS</symbol></currency></receiver><amount><defaultValue>0</defaultValue><editable>true</editable><limitMin>100000</limitMin><limitMax>14999700000</limitMax><onceMaxAmount>5000000000</onceMaxAmount><availableDecimal>true</availableDecimal><currency><code>000</code><symbol>UZS</symbol></currency></amount><uzsAmount><defaultValue>0</defaultValue><editable>true</editable><limitMin>100000</limitMin><limitMax>14999700000</limitMax><onceMaxAmount>5000000000</onceMaxAmount><availableDecimal>true</availableDecimal><currency><code>000</code><symbol>UZS</symbol></currency></uzsAmount><serviceCharge><value>0.40</value><type>PERCENT</type></serviceCharge><serviceChargeDiscount><isDiscountAvailable>false</isDiscountAvailable></serviceChargeDiscount></return>
+Ошибка парсинга XML или валидации по XSD: cvc-complex-type.2.4.a: Invalid content was found starting with element 'status'. One of '{message}' is expected.
 ]]></system-out>
     <system-err><![CDATA[SLF4J(W): No SLF4J providers were found.
 SLF4J(W): Defaulting to no-operation (NOP) logger implementation

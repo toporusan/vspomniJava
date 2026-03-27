@@ -5,7 +5,7 @@
     <classes>
       <class name="Day6.XMLSchemaValidation">
         <methods>
-          <include name="xmlSchemaValidation"/>
+          <include name="xmlSchemaValidation2"/>
         </methods>
       </class> <!-- Day6.XMLSchemaValidation -->
     </classes>
