@@ -1,9 +1,13 @@
 package Day6;
 
-import io.restassured.module.jsv.JsonSchemaValidator;
-import org.testng.annotations.Test;
+import SchemeValidationUtility.SchemaValidatorUtility;
+import io.restassured.response.Response;
+import org.junit.jupiter.api.Test;
+
+
 import java.io.File;
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.*;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class JSONSchemaValidation {
 
@@ -33,17 +37,22 @@ public class JSONSchemaValidation {
                 .log().body();
 
 
-        given()
+        Response response = given()
                 .baseUri("https://petstore.swagger.io/v2")
                 .header("Content-Type", "application/json")
                 .when()
                 .get("/user/ivan_petrov")
                 .then()
-                .assertThat().statusCode(200)
-                .body(JsonSchemaValidator.matchesJsonSchema(new File("src/test/java/Day6/resourse/usersSchema.json")))
-                .log().body();
+                .extract().response();
 
+        response.then().log().body();
+
+        assertThat(response.getStatusCode()).isEqualTo(200);
+        assertThat(response.jsonPath().getString("username")).isEqualTo("ivan_petrov");
+        SchemaValidatorUtility.JSONSchemavalidator(response, "src/test/java/Day6/resourse/usersSchema.json");
     }
 
-
+    @Test
+    void name() {
+    }
 }

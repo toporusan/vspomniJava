@@ -1,6 +1,9 @@
-package XMLSchemeValidationUtility;
+package SchemeValidationUtility;
 
+import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.Response;
+import org.hamcrest.MatcherAssert;
+import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.InputSource;
@@ -23,36 +26,43 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 
-/*
-    Утилитный класс для валидации XML-ответов от API против XSD-схемы.
+/**
+ * Утилитный класс для валидации XML и JSON ответов от API против XSD/JSON схем.
+ *
+ * <p>Пример использования: принять HTTP-ответ (Response), извлечь из него нужный XML-элемент
+ * и проверить соответствие структуре, описанной в XSD-файле.</p>
+ *
+ * <p>Содержит два перегруженных метода {@code XMLSchemavalidator}:</p>
+ * <ul>
+ *   <li>С параметром {@code namespaceURI} — для SOAP-ответов, где элементы имеют xmlns-префиксы</li>
+ *   <li>Без {@code namespaceURI} — для простых XML, где элементы без namespace</li>
+ * </ul>
+ *
+ * <p>Пример использования с namespace (SOAP):</p>
+ * <pre>{@code
+ * SchemaValidatorUtility.XMLSchemavalidator(
+ *     response,
+ *     "src/test/resources/schema.xsd",
+ *     XMLConstants.W3C_XML_SCHEMA_NS_URI,
+ *     "ListOfContinentsByNameResponse",
+ *     "http://www.oorsprong.org/websamples.countryinfo"
+ * );
+ * }</pre>
+ *
+ * <p>Пример использования без namespace:</p>
+ * <pre>{@code
+ * SchemaValidatorUtility.XMLSchemavalidator(
+ *     response,
+ *     "src/test/resources/schema.xsd",
+ *     XMLConstants.W3C_XML_SCHEMA_NS_URI,
+ *     "return"
+ * );
+ * }</pre>
+ */
 
-    Задача: принять HTTP-ответ (Response), извлечь из него нужный XML-элемент
-    и проверить соответствие структуре, описанной в XSD-файле.
-
-    Содержит два перегруженных метода validatorXmlSchema:
-      - С параметром namespaceURI — для SOAP-ответов, где элементы имеют xmlns-префиксы
-      - Без namespaceURI — для простых XML, где элементы без namespace
-
-    Пример использования с namespace (SOAP):
-      XmlSchemaValidator.validatorXmlSchema(
-          response,
-          "src/test/resources/schema.xsd",
-          XMLConstants.W3C_XML_SCHEMA_NS_URI,
-          "ListOfContinentsByNameResponse",
-          "http://www.oorsprong.org/websamples.countryinfo"
-      );
-
-    Пример использования без namespace:
-      XmlSchemaValidator.validatorXmlSchema(
-          response,
-          "src/test/resources/schema.xsd",
-          XMLConstants.W3C_XML_SCHEMA_NS_URI,
-          "return"
-      );
-*/
 public class SchemaValidatorUtility {
 
-    public void validatorXmlSchema(Response response, String xmlSchemaLocation, String schemaLanguage, String rootElementName, String namespaceURI) throws ParserConfigurationException, IOException, SAXException, TransformerException {
+    public static void XMLSchemavalidator(@NotNull Response response, String xmlSchemaLocation, String schemaLanguage, String rootElementName, String namespaceURI) throws ParserConfigurationException, IOException, SAXException, TransformerException {
 
         try {
             // Создаём фабрику для построения XML-парсера
@@ -92,7 +102,7 @@ public class SchemaValidatorUtility {
             // Достаём готовую XML-строку из буфера
             String innerXml = writer.toString();
 
-            System.out.println("Извлечённый XML: " + innerXml);
+            //System.out.println("Извлечённый XML: " + innerXml);
 
             // SchemaFactory создаёт валидатор для нужного стандарта схем
             // schemaLanguage = "http://www.w3.org/2001/XMLSchema" — говорит что используем XSD (W3C стандарт)
@@ -108,7 +118,6 @@ public class SchemaValidatorUtility {
             // Если XML не соответствует схеме → выбросит SAXException с описанием что не так
             // Если всё ок → молча продолжает выполнение
             validator.validate(new StreamSource(new StringReader(innerXml)));
-
             System.out.println("XML валиден согласно XSD схеме!");
 
         }
@@ -131,7 +140,7 @@ public class SchemaValidatorUtility {
 
 
     }
-    public static void validatorXmlSchema(Response response, String xmlSchemaLocation, String schemaLanguage, String rootElementName) {
+    public static void XMLSchemavalidator(@NotNull Response response, String xmlSchemaLocation, String schemaLanguage, String rootElementName) {
 
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -174,5 +183,14 @@ public class SchemaValidatorUtility {
             System.out.println("Элемент '" + rootElementName + "' не найден в XML-ответе. Проверь имя тега: " + e.getMessage());
             throw new RuntimeException("Элемент '" + rootElementName + "' не найден в XML-ответе", e);
         }
+    }
+
+    public static void JSONSchemavalidator(@NotNull Response response, String jsonSchemaLocation) {
+        MatcherAssert.assertThat(
+                response.getBody().asString(),
+                JsonSchemaValidator.matchesJsonSchema(new File(jsonSchemaLocation))
+        );
+        System.out.println("JSON соответствует схеме!");
+
     }
 }

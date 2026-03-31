@@ -1,9 +1,9 @@
 package Day6;
 
-import XMLSchemeValidationUtility.SchemaValidatorUtility;
+import SchemeValidationUtility.SchemaValidatorUtility;
 import io.restassured.response.Response;
-import org.testng.annotations.Test;
 import org.xml.sax.SAXException;
+import org.junit.jupiter.api.*;
 
 import javax.xml.XMLConstants;
 import javax.xml.parsers.ParserConfigurationException;
@@ -12,7 +12,7 @@ import javax.xml.transform.TransformerException;
 import java.io.File;
 import java.io.IOException;
 
-import static XMLSchemeValidationUtility.SchemaValidatorUtility.validatorXmlSchema;
+import static SchemeValidationUtility.SchemaValidatorUtility.XMLSchemavalidator;
 import static io.restassured.RestAssured.given;
 
 
@@ -20,7 +20,7 @@ import static io.restassured.RestAssured.given;
 
 public class SchemaValidationTests {
 
-/*    @Test
+    @Test
     public void xmlSchemaValidation() throws Exception {
 
         String requestBody = """
@@ -39,14 +39,14 @@ public class SchemaValidationTests {
                 .when()
                 .post("websamples.countryinfo/CountryInfoService.wso");
 
-        validatorXmlSchema(
+        SchemaValidatorUtility.XMLSchemavalidator(
                 response,
                 "src/test/java/Day6/resourse/countryInfo.xsd",
                 XMLConstants.W3C_XML_SCHEMA_NS_URI,
-                "http://www.oorsprong.org/websamples.countryinfo",
-                "ListOfContinentsByNameResponse"
+                "ListOfContinentsByNameResponse",
+                "http://www.oorsprong.org/websamples.countryinfo"
         );
-    }*/
+    }
 
     @Test
     public void xmlSchemaValidation2() throws ParserConfigurationException, IOException, TransformerException, SAXException {
@@ -64,7 +64,7 @@ public class SchemaValidationTests {
                 .then()
                 .extract().response();
 
-        SchemaValidatorUtility.validatorXmlSchema(response, "src/test/java/XMLSchemeValidationUtility/p2pInfo/xmlSchena.xsd",
+        XMLSchemavalidator(response, "src/test/java/XMLSchemeValidationUtility/p2pInfo/xmlSchena.xsd",
                 XMLConstants.W3C_XML_SCHEMA_NS_URI,"return");
 
     }
