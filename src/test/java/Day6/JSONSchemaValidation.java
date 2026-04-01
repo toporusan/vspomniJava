@@ -52,7 +52,5 @@ public class JSONSchemaValidation {
         SchemaValidatorUtility.JSONSchemavalidator(response, "src/test/java/Day6/resourse/usersSchema.json");
     }
 
-    @Test
-    void name() {
-    }
+
 }
