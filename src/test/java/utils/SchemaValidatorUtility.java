@@ -1,4 +1,4 @@
-package SchemeValidationUtility;
+package utils;
 
 import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.Response;
@@ -62,7 +62,27 @@ import java.io.StringWriter;
 
 public class SchemaValidatorUtility {
 
-    public static void XMLSchemavalidator(@NotNull Response response, String xmlSchemaLocation, String schemaLanguage, String rootElementName, String namespaceURI) throws ParserConfigurationException, IOException, SAXException, TransformerException {
+    /**
+     * Валидирует XML ответ от API против XSD схемы. Версия для SOAP/XML с namespace (xmlns).
+     *
+     * @param response        ответ от API (Rest Assured Response)
+     * @param xmlSchemaLocation путь к XSD файлу, например "src/test/resources/schema.xsd"
+     * @param schemaLanguage  стандарт схемы, обычно XMLConstants.W3C_XML_SCHEMA_NS_URI
+     * @param rootElementName имя XML элемента который нужно валидировать, например "ListOfContinentsByNameResponse"
+     * @param namespaceURI    namespace элемента, например "<a href="http://www.oorsprong.org/websamples.countryinfo">...</a>"
+     *
+     * <p>Пример:</p>
+     * <pre>{@code
+     * SchemaValidatorUtility.XMLSchemavalidator(
+     *     response,
+     *     "src/test/resources/schema.xsd",
+     *     XMLConstants.W3C_XML_SCHEMA_NS_URI,
+     *     "ListOfContinentsByNameResponse",
+     *     "http://www.oorsprong.org/websamples.countryinfo"
+     * );
+     * }</pre>
+     */
+    public static void XMLSchemavalidator(@NotNull Response response, String xmlSchemaLocation, String schemaLanguage, String rootElementName, String namespaceURI) {
 
         try {
             // Создаём фабрику для построения XML-парсера
@@ -140,6 +160,25 @@ public class SchemaValidatorUtility {
 
 
     }
+
+    /**
+     * Валидирует XML ответ от API против XSD схемы. Версия для простого XML без namespace.
+     *
+     * @param response        ответ от API (Rest Assured Response)
+     * @param xmlSchemaLocation путь к XSD файлу, например "src/test/resources/schema.xsd"
+     * @param schemaLanguage  стандарт схемы, обычно XMLConstants.W3C_XML_SCHEMA_NS_URI
+     * @param rootElementName имя XML элемента который нужно валидировать, например "return"
+     *
+     * <p>Пример:</p>
+     * <pre>{@code
+     * SchemaValidatorUtility.XMLSchemavalidator(
+     *     response,
+     *     "src/test/resources/schema.xsd",
+     *     XMLConstants.W3C_XML_SCHEMA_NS_URI,
+     *     "return"
+     * );
+     * }</pre>
+     */
     public static void XMLSchemavalidator(@NotNull Response response, String xmlSchemaLocation, String schemaLanguage, String rootElementName) {
 
         try {
@@ -185,6 +224,17 @@ public class SchemaValidatorUtility {
         }
     }
 
+    /**
+     * Валидирует JSON ответ от API против JSON Schema.
+     *
+     * @param response           ответ от API (Rest Assured Response)
+     * @param jsonSchemaLocation путь к JSON Schema файлу, например "src/test/java/Day6/resourse/schema.json"
+     *
+     * <p>Пример:</p>
+     * <pre>{@code
+     * SchemaValidatorUtility.JSONSchemavalidator(response, "src/test/java/Day6/resourse/PetClassSchema.json");
+     * }</pre>
+     */
     public static void JSONSchemavalidator(@NotNull Response response, String jsonSchemaLocation) {
         MatcherAssert.assertThat(
                 response.getBody().asString(),

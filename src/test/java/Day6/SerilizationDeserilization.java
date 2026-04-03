@@ -3,7 +3,8 @@ package Day6;
 import Day6.POJOClass.Category;
 import Day6.POJOClass.PetClass;
 import Day6.POJOClass.TagsItem;
-import SchemeValidationUtility.SchemaValidatorUtility;
+import utils.JsonUtils;
+import utils.SchemaValidatorUtility;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.javafaker.Faker;
@@ -11,16 +12,12 @@ import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-
 import java.util.List;
-
 import static io.restassured.RestAssured.given;
+import static utils.JsonUtils.fromResponse;
 
 public class SerilizationDeserilization {
 
-    Faker faker = new Faker();
-    long randomId = faker.number().randomNumber();
-    String name = faker.name().name();
 
     @Test
     void POSTSetPetSerilization() throws JsonProcessingException {
@@ -51,7 +48,12 @@ public class SerilizationDeserilization {
         String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(pet);
         System.out.println(json);
 
-        Response response = given().header("Content-Type", "application/json").baseUri("https://petstore.swagger.io/v2").body(pet).when().post("/pet").then().extract().response();
+        Response response = given()
+                .header("Content-Type", "application/json")
+                .baseUri("https://petstore.swagger.io/v2")
+                .body(pet).when()
+                .post("/pet")
+                .then().extract().response();
 
         assertThat(response.statusCode()).as("Статус код должен быть 200").isEqualTo(200);
         SchemaValidatorUtility.JSONSchemavalidator(response, "src/test/java/Day6/resourse/PetClassSchema.json");
@@ -64,20 +66,19 @@ public class SerilizationDeserilization {
     @Test
     void GETPetDeserilization() throws JsonProcessingException {
 
+        Response response = given()
+                .header("Content-Type", "application/json")
+                .baseUri("https://petstore.swagger.io/v2")
+                .when().get("/pet/11111111111")
+                .then()
+                .extract().response();
 
-        Response response = given().header("Content-Type", "application/json").baseUri("https://petstore.swagger.io/v2").when().get("/pet/11111111111").then().extract().response();
 
-        response.body().prettyPrint();
+        PetClass pet = fromResponse(response, PetClass.class);
 
-        assertThat(response.statusCode()).as("Статус код должен быть 200").isEqualTo(200);
-
-        // jsonPath() — парсит JSON и достаёт значение по пути "pet.name" без создания Java объекта
-        assertThat(response.body().jsonPath().getString("pet.name")).as("Имя питомца должно быть 'buddy'").isEqualTo("buddy");
-
-        // as(PetClass.class) — десериализует весь JSON в объект PetClass, затем идём по геттерам
-        assertThat(response.getBody().as(PetClass.class).getCategory().getName()).as("Название категории должно быть 'dogs'").isEqualTo("dogs");
-
+        assertThat(pet.getName()).as("Имя собаки 'buddy'").isEqualTo("buddy");
         SchemaValidatorUtility.JSONSchemavalidator(response, "src/test/java/Day6/resourse/PetClassSchema.json");
+
 
     }
 }

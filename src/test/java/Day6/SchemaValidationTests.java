@@ -1,6 +1,6 @@
 package Day6;
 
-import SchemeValidationUtility.SchemaValidatorUtility;
+import utils.SchemaValidatorUtility;
 import io.restassured.response.Response;
 import org.xml.sax.SAXException;
 import org.junit.jupiter.api.*;
@@ -12,7 +12,7 @@ import javax.xml.transform.TransformerException;
 import java.io.File;
 import java.io.IOException;
 
-import static SchemeValidationUtility.SchemaValidatorUtility.XMLSchemavalidator;
+import static utils.SchemaValidatorUtility.XMLSchemavalidator;
 import static io.restassured.RestAssured.given;
 
 

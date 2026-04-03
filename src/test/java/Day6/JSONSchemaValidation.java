@@ -1,11 +1,10 @@
 package Day6;
 
-import SchemeValidationUtility.SchemaValidatorUtility;
+import utils.SchemaValidatorUtility;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 
 
-import java.io.File;
 import static io.restassured.RestAssured.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 

@@ -13,23 +13,19 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <junit.jupiter.version>6.0.1</junit.jupiter.version>
+        <junit.jupiter.version>5.10.2</junit.jupiter.version>
         <slf4j.version>2.0.9</slf4j.version>
         <io.rest-assured.version>6.0.0</io.rest-assured.version>
         <json.version>20251224</json.version>
         <scribejava-apis.version>8.3.3</scribejava-apis.version>
         <testng.version>7.11.0</testng.version>
+        <hamcrest.version>3.0</hamcrest.version>
+        <assertj.version>3.27.7</assertj.version>
+        <jackson.version>2.17.1</jackson.version>
+        <jetbrains.annotations.version>24.0.0</jetbrains.annotations.version>
     </properties>
 
     <dependencies>
-
-        <!-- Source: https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
-<!--        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>${junit.jupiter.version}</version>
-            <scope>test</scope>
-        </dependency>-->
 
         <!-- Source: https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
         <dependency>
@@ -67,10 +63,11 @@
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest</artifactId>
-            <version>3.0</version>
+            <version>${hamcrest.version}</version>
             <scope>test</scope>
         </dependency>
 
+        <!-- Source: https://mvnrepository.com/artifact/com.github.javafaker/javafaker -->
         <dependency>
             <groupId>com.github.javafaker</groupId>
             <artifactId>javafaker</artifactId>
@@ -81,7 +78,7 @@
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>json-path</artifactId>
-            <version>6.0.0</version>
+            <version>${io.rest-assured.version}</version>
             <scope>compile</scope>
         </dependency>
 
@@ -89,7 +86,7 @@
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>xml-path</artifactId>
-            <version>6.0.0</version>
+            <version>${io.rest-assured.version}</version>
             <scope>compile</scope>
         </dependency>
 
@@ -97,15 +94,29 @@
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>json-schema-validator</artifactId>
-            <version>6.0.0</version>
+            <version>${io.rest-assured.version}</version>
             <scope>compile</scope>
+        </dependency>
+
+        <!-- Source: https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <!-- Source: https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
 
         <!-- Source: https://mvnrepository.com/artifact/org.assertj/assertj-core -->
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>3.27.7</version>
+            <version>${assertj.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -113,7 +124,7 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>5.10.2</version>
+            <version>${junit.jupiter.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -121,18 +132,20 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.10.2</version>
+            <version>${junit.jupiter.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- Source: https://mvnrepository.com/artifact/org.jetbrains/annotations -->
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
-            <version>RELEASE</version>
+            <version>${jetbrains.annotations.version}</version>
             <scope>compile</scope>
         </dependency>
 
-
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -143,7 +156,6 @@
                     <target>16</target>
                 </configuration>
             </plugin>
-
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -156,10 +168,7 @@
                 </configuration>
             </plugin>
 
-
         </plugins>
     </build>
-
-
 
 </project>
