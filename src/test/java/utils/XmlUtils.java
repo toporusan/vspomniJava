@@ -1,11 +1,17 @@
 package utils;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import io.restassured.response.Response;
 
 public class XmlUtils {
 
-    private static final XmlMapper xmlMapper = new XmlMapper();
+    private static final XmlMapper xmlMapper;
+
+    static {
+        xmlMapper = new XmlMapper();
+        xmlMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    }
 
     /**
      * Сериализует Java объект в XML строку.

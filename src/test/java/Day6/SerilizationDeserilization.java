@@ -1,5 +1,8 @@
 package Day6;
 
+import Day6.Continents.Body;
+import Day6.Continents.Envelope;
+import Day6.Continents.tContinent;
 import Day6.POJOClass.Category;
 import Day6.POJOClass.PetClass;
 import Day6.POJOClass.TagsItem;
@@ -10,11 +13,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.javafaker.Faker;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
+import utils.XmlUtils ;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import java.util.List;
 import static io.restassured.RestAssured.given;
 import static utils.JsonUtils.fromResponse;
+import static utils.XmlUtils.fromXmlResponse;
 
 public class SerilizationDeserilization {
 
@@ -79,6 +84,41 @@ public class SerilizationDeserilization {
         assertThat(pet.getName()).as("Имя собаки 'buddy'").isEqualTo("buddy");
         SchemaValidatorUtility.JSONSchemavalidator(response, "src/test/java/Day6/resourse/PetClassSchema.json");
 
+
+    }
+
+    @Test
+    void xmlSerilization() {
+        String envelop = """
+                <?xml version="1.0" encoding="utf-8"?>
+                <soap12:Envelope xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+                  <soap12:Body>
+                    <tns:ListOfContinentsByName xmlns:tns="http://www.oorsprong.org/websamples.countryinfo"/>
+                  </soap12:Body>
+                </soap12:Envelope>
+                """;
+
+
+        Response response = given()
+                .baseUri("http://webservices.oorsprong.org")
+                .header("Content-Type", "text/xml; charset=utf-8")
+                .body(envelop)
+                .when()
+                .post("/websamples.countryinfo/CountryInfoService.wso")
+                .then()
+                .extract().response();
+
+        response.body().prettyPrint();
+
+
+        tContinent continent = fromXmlResponse(response, tContinent.class);
+        System.out.println(continent.getsCode());
+
+
+    }
+
+    @Test
+    void xmlDeserilization() {
 
     }
 }
