@@ -1,25 +1,25 @@
 package Day6;
 
-import Day6.Continents.Body;
-import Day6.Continents.Envelope;
-import Day6.Continents.tContinent;
+import Day6.ContinentsRequest.*;
+import Day6.ContinentsResponce.Envelope;
+import Day6.ContinentsResponce.tContinent;
 import Day6.POJOClass.Category;
 import Day6.POJOClass.PetClass;
 import Day6.POJOClass.TagsItem;
-import utils.JsonUtils;
 import utils.SchemaValidatorUtility;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.javafaker.Faker;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
-import utils.XmlUtils ;
+
+import javax.xml.XMLConstants;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import java.util.List;
 import static io.restassured.RestAssured.given;
 import static utils.JsonUtils.fromResponse;
 import static utils.XmlUtils.fromXmlResponse;
+
 
 public class SerilizationDeserilization {
 
@@ -88,7 +88,7 @@ public class SerilizationDeserilization {
     }
 
     @Test
-    void xmlSerilization() {
+    void xmlDeserilization() {
         String envelop = """
                 <?xml version="1.0" encoding="utf-8"?>
                 <soap12:Envelope xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
@@ -111,14 +111,41 @@ public class SerilizationDeserilization {
         response.body().prettyPrint();
 
 
-        tContinent continent = fromXmlResponse(response, tContinent.class);
-        System.out.println(continent.getsCode());
+        Envelope envelope = fromXmlResponse(response, Envelope.class);
 
+        List<tContinent> continents = envelope
+                .getBody()
+                .getListOfContinentsByNameResponse()
+                .getListOfContinentsByNameResult()
+                .gettContinent();
 
+        assertThat(continents.get(0).getsCode()).as("country code is not AF").isEqualTo("AF");
     }
 
     @Test
-    void xmlDeserilization() {
+    void xmlSerilization() {
 
+        EnvelopeRequest request = new EnvelopeRequest();
+        request.body = new BodyRequest();
+        request.body.request = new ListOfContinentsByName();
+
+        String xml = utils.XmlUtils.toXml(request);
+        //System.out.println(xml);
+
+        Response response = given()
+                .baseUri("http://webservices.oorsprong.org")
+                .header("Content-Type", "text/xml; charset=utf-8")
+                .body(xml)
+                .when()
+                .post("/websamples.countryinfo/CountryInfoService.wso")
+                .then()
+                .extract().response();
+
+        assertThat(response.statusCode()).as("Статус код должен быть 200").isEqualTo(200);
+
+        SchemaValidatorUtility.XMLSchemavalidator(response,
+                "src/test/java/Day6/resourse/countryInfo.xsd",
+                XMLConstants.W3C_XML_SCHEMA_NS_URI,"ListOfContinentsByNameResponse");
+        //response.body().prettyPrint();
     }
 }

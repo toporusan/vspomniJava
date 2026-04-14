@@ -70,4 +70,7 @@ public class XmlUtils {
     public static <T> T fromXmlResponse(Response response, Class<T> clazz) {
         return fromXml(response.getBody().asString(), clazz);
     }
+
+
+
 }

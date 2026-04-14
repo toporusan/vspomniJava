@@ -188,7 +188,7 @@ public class SchemaValidatorUtility {
             Document document = builder.parse(new InputSource(new StringReader(response.getBody().asString())));
 
             // ищем нужный элемент: если namespace не указан — ищем по имени тега
-            Element responseElement = (Element) document.getElementsByTagName(rootElementName).item(0);
+           Element responseElement = (Element) document.getElementsByTagNameNS("*", rootElementName).item(0);
 
             // конвертируем элемент обратно в строку для валидации
             Transformer transformer = TransformerFactory.newInstance().newTransformer();

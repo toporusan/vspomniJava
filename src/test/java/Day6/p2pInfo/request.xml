@@ -8,7 +8,7 @@
                 <receiverNumberType>USER_CARD_ID</receiverNumberType>
                 <senderNumber>2449630</senderNumber>
                 <senderNumberType>USER_CARD_ID</senderNumberType>
-                <token>eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI5MDAxNzA2ODkiLCJhdWRpZW5jZSI6MTIsImNyZWF0ZWQiOjE3NzQzNTUwMzM2ODMsInRva2VuX3R5cGUiOiJBQ0NFU1MiLCJleHAiOjE3NzY5NDcwMzMsInVzZXJpZCI6MTk0MTg0NSwidG9rZW5fZmFtaWx5IjoiZWUyNDhlYzFlYzEzNDhkODgyMjBiNDkwMTcwNjEzYzcifQ.EKYZ3kZh_slpYkmM1BxCc1smRwFQluryZSDngaDC9aA0Bq_chJMfS_fHFeG-ya138Wq_XYqIkLS0YR9EddGimw</token>
+                <token>eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI5MDAxNzA2ODkiLCJhdWRpZW5jZSI6MTIsImNyZWF0ZWQiOjE3NzYxNjg0Nzg4NzQsInRva2VuX3R5cGUiOiJBQ0NFU1MiLCJleHAiOjE3Nzg3NjA0NzgsInVzZXJpZCI6MTk0MTg0NSwidG9rZW5fZmFtaWx5IjoiZWMxMGZjYjE1ZjQzNDY5Mzg3NDIzM2NlYTViMWYwMjAifQ.hPF3Gt9N2BcmHHB7dH7JR4XqeZEn5mnnMJWmsttymkkFaN8gR-burOZ5PlZfbYwvPRlHSXJSZBx86e1c6kcQ0w</token>
                 <version>2.1.19-staging</version>
             </p2pInfoRequest>
         </soap:p2pInfo>
