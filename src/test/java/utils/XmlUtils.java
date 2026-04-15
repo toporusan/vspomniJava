@@ -6,10 +6,16 @@ import io.restassured.response.Response;
 
 public class XmlUtils {
 
+    // XmlMapper — аналог ObjectMapper, но для XML вместо JSON.
+    // static final — один экземпляр на весь класс, создаётся один раз при загрузке.
     private static final XmlMapper xmlMapper;
 
+    // static {} — выполняется один раз при загрузке класса (как конструктор, но для самого класса).
     static {
         xmlMapper = new XmlMapper();
+
+       /* FAIL_ON_UNKNOWN_PROPERTIES = false — не падать если в XML встретилось поле,
+        которого нет в Java классе. Нужно для SOAP XML где есть служебные теги (soap:, xmlns: и т.д.)*/
         xmlMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
