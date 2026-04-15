@@ -1,8 +1,11 @@
 package Day7;
 
+import io.restassured.response.Response;
 import org.junit.jupiter.api.*;
 
 import static io.restassured.RestAssured.given;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.BDDAssertions.and;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -24,9 +27,8 @@ public class Authentications {
                 .get("/basic-auth")
                 .then()
                 .statusCode(200)
-                .body("authenticated",equalTo(true))
+                .body("authenticated", equalTo(true))
                 .log().all();
-
 
     }
 
@@ -46,7 +48,7 @@ public class Authentications {
                 .get("/basic-auth")
                 .then()
                 .statusCode(200)
-                .body("authenticated",equalTo(true))
+                .body("authenticated", equalTo(true))
                 .log().all();
     }
 
@@ -66,26 +68,62 @@ public class Authentications {
                 .get("/basic-auth")
                 .then()
                 .statusCode(200)
-                .body("authenticated",equalTo(true))
+                .body("authenticated", equalTo(true))
                 .log().all();
     }
 
     @Test
-    @DisplayName("Digest basic authentication test ")
-    @Order(3)
+    @DisplayName("Bearer token authentication test")
+    @Order(4)
     public void bearerTokenAuthenticationTest() {
 
-        given()
+        String body = """
+                {
+                  "username": "emilys",
+                  "password": "emilyspass"
+                }
+                """;
+
+        Response response = given()
                 .header("Content-Type", "application/json")
-                .baseUri("https://postman-echo.com")
-                .auth().digest("postman", "password")
+                .baseUri("https://dummyjson.com")
+                .body(body)
                 .when()
-                .get("/basic-auth")
+                .post("/auth/login")
+                .then().extract().response();
+
+        String accessToken = response.jsonPath().getString("accessToken");
+
+        assertThat(response.statusCode()).as("Status code note 200").isEqualTo(200);
+        assertThat(response.getTime()).as("Get time is not less than 3000").isLessThan(3000);
+        assertThat(response.getBody().asString()).as("The body is empty").isNotEmpty();
+
+
+        Response response1 = given()
+                .header("Content-Type", "application/json")
+                .baseUri("https://dummyjson.com")
+                .auth().oauth2(accessToken)
+                .body(body)
+                .when()
+                .get("/auth/me")
                 .then()
-                .statusCode(200)
-                .body("authenticated",equalTo(true))
-                .log().all();
+                .extract().response();
+
+        assertThat(response1.statusCode()).as("Status code note 200").isEqualTo(200);
+        assertThat(response1.getTime()).as("Get time is not less than 3000").isLessThan(3000);
+        assertThat(response1.getBody().asString()).as("The body is empty").isNotEmpty();
+        assertThat(response1.jsonPath().getString("firstName")).as("The name is not Emily").isEqualTo("Emily");
+        assertThat(response1.jsonPath().getString("crypto.coin")).as("The crypto is not Bitcoin").isEqualTo("Bitcoin");
+        assertThat(response1.jsonPath().getString("crypto.coin")).as("The crypto is not Bitcoin").hasSize(7);
+
+        int size = response1.jsonPath().getString("crypto.coin").length();
+        System.out.println(size);
+
+        assertThat(response1.jsonPath().getString("address.postalCode")).as("The crypto is not Bitcoin").containsOnlyDigits();
+
     }
 
 
 }
+
+
