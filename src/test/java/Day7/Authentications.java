@@ -4,6 +4,7 @@ import io.restassured.response.Response;
 import org.junit.jupiter.api.*;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.responseSpecification;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.BDDAssertions.and;
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -124,6 +125,37 @@ public class Authentications {
     }
 
 
+
+    @Test
+    @DisplayName("APIkey  authentication test")
+    @Order(5)
+
+    public void apiKeyAuthenticationTest() {
+
+        Response response = given()
+                .header("Content-Type", "application/json")
+                .baseUri("https://api.openweathermap.org")
+                .queryParam("appid", "a3c49ffb43d234ff4b07827d683eb15e")
+                .queryParam("lat", "41.31")
+                .queryParam("lon", "69.28")
+                .queryParam("units", "metric")
+                .queryParam("lang", "ru")
+                .when().get("/data/2.5/weather")
+                .then().extract().response();
+
+        response.then().log().all();
+
+        String main = response.jsonPath().getString("weather.main");
+        System.out.println(main);
+        response.jsonPath().getList("weather.main")
+                .forEach(main2 -> System.out.println(main2));
+
+        assertThat(response.statusCode()).as("Status code note 200").isEqualTo(200);
+        assertThat(response.jsonPath().getString("weather[0].main")).as("Is not clouds").isEqualTo("Clouds");
+        assertThat(response.jsonPath().getString("weather[0].main")).as("Is not clouds").hasSize(6);
+        response.then().statusCode(200).body("weather[0].main", equalTo("Clouds"));
+
+    }
 }
 
 
