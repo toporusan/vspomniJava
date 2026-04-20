@@ -154,6 +154,7 @@ public class Authentications {
         assertThat(response.jsonPath().getString("weather[0].main")).as("Is not clouds").isEqualTo("Clouds");
         assertThat(response.jsonPath().getString("weather[0].main")).as("Is not clouds").hasSize(6);
         response.then().statusCode(200).body("weather[0].main", equalTo("Clouds"));
+        System.out.println();
 
     }
 }
