@@ -1,15 +1,13 @@
 Day3/TestQueryAndPathParameters.class
 Day5/FileUploadAndDownload.class
 Day1/HTTPRequests.class
-Day6/Continents/ListOfContinentsByNameResponse.class
+Pendrak/Stream_lesson1/Car.class
 Day6/JSONSchemaValidation.class
-Day6/Continents/Body.class
 Day6/POJOClass/TagsItem.class
 Day3/CoociesDemo.class
+Pendrak/Stream_lesson1/CarEnum.class
 Day2/POJOclass.class
-Day6/Continents/ListOfContinentsByNameResult.class
 Day4/ParsingJsonResponseData.class
-Day6/Continents/Envelope.class
 Day6/POJOClass/Category.class
 Day2/DifWaysToCreatePostBody.class
 Day6/SerilizationDeserilization.class
@@ -18,6 +16,5 @@ Day5/ParsingXMLResponse.class
 utils/XmlUtils.class
 utils/SchemaValidatorUtility.class
 Day3/HeadersDemo.class
-Day6/Continents/tContinent.class
 utils/JsonUtils.class
 Day6/SchemaValidationTests.class
