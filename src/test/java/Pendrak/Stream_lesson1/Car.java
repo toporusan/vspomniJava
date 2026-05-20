@@ -2,6 +2,8 @@ package Pendrak.Stream_lesson1;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.SimpleTimeZone;
+import java.util.stream.Collectors;
 
 public class Car {
     String name;
@@ -40,17 +42,11 @@ public class Car {
         cars.add(new Car("Mitsubishi L200", "brown", CarEnum.PICKUP));
 
 
+        List<Car> carsHatchback = cars.stream().filter(car -> car.type.equals(CarEnum.HATCHBACK)).collect(Collectors.toList());
+        System.out.println(carsHatchback);
 
-
-        List<Car> carsSedan = new ArrayList<Car>();
-        for (Car car : cars) {
-            if (car.type.equals(CarEnum.SEDAN)) {
-                carsSedan.add(car);
-            }
-        }
-        System.out.println(carsSedan);
-
-
+        List<String> names = cars.stream().filter(car-> car.name.matches(".*M.*")).map(car -> car.name).collect(Collectors.toList());
+        System.out.println(names);
 
     }
 }
