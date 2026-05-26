@@ -1,18 +1,16 @@
 package Zaur.Lesson2;
 
-public class Ex2 {
-
+public class Ex3 {
     public static void main(String[] args) {
-        MyThread1 thread1 = new MyThread1();
-        MyThread2 thread2 = new MyThread2();
-
-        thread1.start();
-        thread2.start();
+        Thread t1 = new Thread(new MyThread3());
+        Thread t2 = new Thread(new MyThread4());
+        t1.start();
+        t2.start();
     }
 }
 
 
-class MyThread1 extends Thread {
+class MyThread3 implements Runnable{
 
     public void run() {
         for (int i = 0; i < 1000; i++) {
@@ -22,7 +20,7 @@ class MyThread1 extends Thread {
 }
 
 
-class MyThread2 extends Thread {
+class MyThread4 implements Runnable {
 
     public void run() {
         for (int i = 1000; i >0; i--) {
